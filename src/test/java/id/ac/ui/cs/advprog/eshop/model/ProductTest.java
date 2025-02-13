@@ -4,8 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class ProductTest {
     Product product;
+
     @BeforeEach
     void setUp () {
         this.product = new Product();
@@ -23,6 +25,7 @@ class ProductTest {
     void testGetProductName() {
         assertEquals("Sampo Cap Bambang", this.product.getProductName());
     }
+
     @Test
     void testGetProductQuantity() {
         assertEquals(100, this.product.getProductQuantity());
