@@ -72,10 +72,11 @@ class ProductRepositoryTest {
     void testEmptyProductName() {
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        product.setProductName(null);
+        product.setProductName("");
         product.setProductQuantity(100);
+        productRepository.create(product);
 
-        assertEquals("Produk Tidak Diketahui", product.getProductName());
+        assertEquals("Nama produk tidak boleh kosong", product.getProductName());
     }
 
     @Test
