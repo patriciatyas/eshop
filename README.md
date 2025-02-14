@@ -2,6 +2,7 @@
 
 ## Reflection 1
 <h3>Penerapan Prinsip Clean Code<h3>
+
 **1. Meaningful Names**
 
 Untuk tutorial ini, saya menuliskan nama variabel, _function_, _class_, dan _argument_ sejelas mungkin agar tidak perlu menjelaskan lagi menggunakan _comment_.
