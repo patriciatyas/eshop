@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Iterator;
 
@@ -70,14 +69,25 @@ class ProductRepositoryTest {
         assertFalse(productIterator.hasNext());
     }
 
+    void testEmptyProductName() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        assertEquals("Nama produk tidak boleh kosong", product.getProductName());
+    }
+
     @Test
     void testNegativeProductQuantity() {
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product.setProductName("Sampo Cap Bambang");
         product.setProductQuantity(-100);
+        productRepository.create(product);
 
-        assertFalse(product.getProductQuantity() > 0);
+        assertEquals(0, product.getProductQuantity());
     }
 
     // Test for edit product
@@ -107,7 +117,7 @@ class ProductRepositoryTest {
         product.setProductQuantity(-50);
         Product savedProduct = productRepository.update(product);
 
-        assertFalse(savedProduct.getProductQuantity() > 0);
+        assertEquals(0, savedProduct.getProductQuantity());
     }
 
     // Test for delete product
@@ -118,6 +128,18 @@ class ProductRepositoryTest {
         product.setProductName("Sampo Cap Bambang");
         product.setProductQuantity(100);
         productRepository.create(product);
+        productRepository.delete(product);
+
+        Iterator <Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+    }
+
+    @Test
+    void testDeleteUnknownProduct() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
         productRepository.delete(product);
 
         Iterator <Product> productIterator = productRepository.findAll();
