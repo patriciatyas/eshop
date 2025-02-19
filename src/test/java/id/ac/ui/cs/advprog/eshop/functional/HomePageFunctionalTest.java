@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ExtendWith(SeleniumJupiter.class)
 public class HomePageFunctionalTest {
@@ -25,10 +26,12 @@ public class HomePageFunctionalTest {
     @Value("${app.baseUrl:http://localhost}")
     private String testBaseUrl;
     private String baseUrl;
+
     @BeforeEach
     void setUp() {
         baseUrl = String.format("%s:%d", testBaseUrl, serverPort);
     }
+
     @Test
     void pageTitle_isCorrect(ChromeDriver driver) throws Exception {
         // Exercise
@@ -37,6 +40,7 @@ public class HomePageFunctionalTest {
         // Verify
         assertEquals("ADV Shop", pageTitle);
     }
+
     @Test
     void welcomeMessage_homePage_isCorrect(ChromeDriver driver) throws Exception {
         // Exercise
