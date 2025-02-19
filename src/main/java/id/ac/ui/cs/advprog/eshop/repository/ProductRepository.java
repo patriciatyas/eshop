@@ -34,7 +34,7 @@ public class ProductRepository {
 
     public Product update(Product product) {
         // Input validation
-        if (product.getProductName().equals("")) product.setProductName("Nama produk tidak boleh kosong!");
+        if (product.getProductName().equals("")) product.setProductName("Nama produk tidak boleh kosong");
         if (product.getProductQuantity() < 0) product.setProductQuantity(0);
 
         for (int i = 0; i < productData.size(); i++) {
