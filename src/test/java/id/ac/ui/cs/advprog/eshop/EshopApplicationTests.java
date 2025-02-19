@@ -15,9 +15,6 @@ class EshopApplicationTest {
 
     @Test
     void mainMethodRuns() {
-        // Mock SpringApplication to avoid actually starting the app
-        SpringApplication mockSpringApplication = mock(SpringApplication.class);
-
         // Call the main method to ensure it runs without errors
         EshopApplication.main(new String[] {});
 
