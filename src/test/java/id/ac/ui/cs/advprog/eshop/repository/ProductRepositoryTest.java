@@ -22,14 +22,20 @@ class ProductRepositoryTest {
     }
 
 
-    // Test for create and find product
-    @Test
-    void testCreateAndFind() {
+    // Initiate product
+    Product initiateProduct() {
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product.setProductName("Sampo Cap Bambang");
         product.setProductQuantity(100);
         productRepository.create(product);
+        return product;
+    }
+
+    // Test for create and find product
+    @Test
+    void testCreateAndFind() {
+        Product product = initiateProduct();
 
         Iterator <Product> productIterator = productRepository.findAll();
         assertTrue(productIterator.hasNext());
@@ -43,6 +49,16 @@ class ProductRepositoryTest {
     void testFindAllIfEmpty() {
         Iterator <Product> productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
+    }
+
+    @Test
+    void testFindProductById() {
+        Product product = initiateProduct();
+        Product savedProduct = productRepository.findProductById("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        assertEquals(product, savedProduct);
+
+        Product unknownProduct = productRepository.findProductById("fb558e9f-1c39-460e-8860-71af6af63bd6");
+        assertNull(unknownProduct);
     }
 
     @Test
