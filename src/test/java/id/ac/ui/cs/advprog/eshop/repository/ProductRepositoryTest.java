@@ -62,6 +62,11 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void testFindProductByUnknownId() {
+        Product savedProduct = productRepository.findProductById("a0f9de46-90b1-437d-a0bf-d0821dde9096");
+        assertNull(savedProduct);
+    }
+    @Test
     void testFindAllIfMoreThanOneProduct() {
         Product product1 = new Product();
         product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
