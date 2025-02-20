@@ -13,8 +13,12 @@ public class ProductRepository {
 
     public Product create(Product product) {
         // Input validation
-        if (product.getProductName().equals("")) product.setProductName("Nama produk tidak boleh kosong");
-        if (product.getProductQuantity() < 0) product.setProductQuantity(0);
+        if ("".equals(product.getProductName())) {
+            product.setProductName("Nama produk tidak boleh kosong");
+        }
+        if (product.getProductQuantity() < 0) {
+            product.setProductQuantity(0);
+        }
         productData.add(product);
         return product;
     }
@@ -34,8 +38,12 @@ public class ProductRepository {
 
     public Product update(Product product) {
         // Input validation
-        if (product.getProductName().equals("")) product.setProductName("Nama produk tidak boleh kosong");
-        if (product.getProductQuantity() < 0) product.setProductQuantity(0);
+        if ("".equals(product.getProductName())) {
+            product.setProductName("Nama produk tidak boleh kosong");
+        }
+        if (product.getProductQuantity() < 0) {
+            product.setProductQuantity(0);
+        }
 
         for (int i = 0; i < productData.size(); i++) {
             if (productData.get(i).getProductId().equals(product.getProductId())) {
