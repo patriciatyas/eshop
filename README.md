@@ -1,4 +1,38 @@
-<h1>Module 1 - Coding Standards</h1>
+Patricia Herningtyas - 2306152241
+
+# Module 2 - CI/CD & Dev Ops
+
+### List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.
+1. Saya menghapus modifier yang tidak perlu dalam interface ProductService. Dalam Java, semua metode di dalam sebuah interface secara implisit bersifat public dan abstract, sehingga menambahkan modifier public secara eksplisit menjadi redundan. Dengan menghapusnya, kode menjadi lebih bersih dan mengikuti _best practice_ dalam java, meningkatkan _readability_ dan _code maintenance_.
+    Permasalahan:  
+        ``` 
+        public interface ProductService {
+            public Product create(Product product);
+            public List<Product> findAll();
+            public Product findProductById (String productId);
+            public Product update(Product product);
+            public void delete (Product product);
+        }
+        ```
+   Perbaikan:
+   ```
+    public interface ProductService {
+        Product create(Product product);
+        List<Product> findAll();
+        Product findProductById (String productId);
+        Product update(Product product);
+        void delete (Product product);
+   }
+   ```
+2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
+    - Sudah, karena saya menerapkan Automated Testing dan Code Quality Analysis. Setiap push dan pull request men-trigger test suite dan static code analysis. Hal ini dilakukan agar perubahan baru tidak menyebabkan regresi atau masalah kualitas kode. Ini juga sejalan dengan prinsip CI yang mengutamakan validasi kode sebelum digabungkan. Saya menerapkan CD disaat mendeploy aplikasi ke PaaS setelah semua pengujian berhasil. Ini berarti setiap perubahan yang lolos tahap pengujian akan langsung diterapkan ke _production environment_ tanpa interverensi manual.
+
+
+
+<details>
+<summary>Module 1 - Coding Standards</summary>
+
+# Module 1 - Coding Standards
 
 ## Reflection 1
 <h3>Penerapan Prinsip Clean Code<h3>
@@ -47,4 +81,4 @@ Misalnya, bisa jadi _testing_ tidak mencakup semua kasus edge, tidak menguji int
 Jadi, meskipun code coverage tinggi itu baik, kualitas pengujian dan cakupan skenario _testing_ jauh lebih penting untuk memastikan kode benar-benar bebas dari bug.
 
 2. Menurut pendapat saya, hal tersebut mengurangi kualitas dari _clean code_. Menggunakan suatu prosedur dan variabel yang sama membuat kode menjadi tidak efisien. Oleh karena itu, kita bisa membuatnya ke dalam satu 'Class'. Setelah itu, dipisah menjadi _function_ yang berbeda-beda untuk setiap _test_nya.
-
+</details>
