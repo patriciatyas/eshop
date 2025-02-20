@@ -90,7 +90,7 @@ class ProductControllerTest {
 
         mockMvc.perform(delete("/product/delete/1"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("../list"));
+                .andExpect(redirectedUrl("/product/list"));
         verify(service).delete(product);
     }
 }
