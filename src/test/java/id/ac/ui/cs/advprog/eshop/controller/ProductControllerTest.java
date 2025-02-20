@@ -42,7 +42,7 @@ class ProductControllerTest {
     void testCreateProductPage() {
         String view = controller.createProductPage(model);
         verify(model).addAttribute(eq("product"), any(Product.class));
-        assertEquals("createProduct", view);
+        assertEquals("CreateProduct", view);
     }
 
     @Test
@@ -50,7 +50,7 @@ class ProductControllerTest {
         Product product = new Product();
         mockMvc.perform(post("/product/create").flashAttr("product", product))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("list"));
+                .andExpect(redirectedUrl("/product/list"));
         verify(service).create(product);
     }
 
@@ -61,7 +61,7 @@ class ProductControllerTest {
 
         String view = controller.productListPage(model);
         verify(model).addAttribute("products", products);
-        assertEquals("productList", view);
+        assertEquals("ProductList", view);
     }
 
     @Test
@@ -71,7 +71,7 @@ class ProductControllerTest {
 
         String view = controller.editProductPage("1", model);
         verify(model).addAttribute("product", product);
-        assertEquals("editProduct", view);
+        assertEquals("EditProduct", view);
     }
 
     @Test
@@ -79,7 +79,7 @@ class ProductControllerTest {
         Product product = new Product();
         mockMvc.perform(post("/product/edit").flashAttr("product", product))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("list"));
+                .andExpect(redirectedUrl("/product/list"));
         verify(service).update(product);
     }
 
@@ -90,7 +90,7 @@ class ProductControllerTest {
 
         mockMvc.perform(delete("/product/delete/1"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("../list"));
+                .andExpect(redirectedUrl("/product/list"));
         verify(service).delete(product);
     }
 }
