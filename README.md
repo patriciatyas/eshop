@@ -24,7 +24,7 @@ Patricia Herningtyas - 2306152241
         void delete (Product product);
    }
    ```
-2. Saya menghapus import yang tidak terpakai di HomePageController
+2. Menghapus import yang tidak terpakai di HomePageController
     ```
     import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +34,48 @@ Patricia Herningtyas - 2306152241
    import org.springframework.web.bind.annotation.GetMapping;
 
    ```
+3. Mengubah string comparisons dari
+    ```
+   if (product.getProductName().equals(""))
+   ```
+   menjadi
+    ```
+   if ("".equals(product.getProductName()))
+   ```
+   untuk mencegah NullPointerException jika getProductName() adalah null (akan me-return false jika null)
+4. Menambahkan {} untuk if conditions agar kode memiliki _readability_ dan _maintainability_ yang lebih baik. 
+Sebelum: 
+   ```
+   if ("".equals(product.getProductName())) product.setProductName("Nama produk tidak boleh kosong");
+    if (product.getProductQuantity() < 0) product.setProductQuantity(0);
+   ```
+Setelah:
+    ```
+    if ("".equals(product.getProductName())) {
+       product.setProductName("Nama produk tidak boleh kosong");
+    }
+    if (product.getProductQuantity() < 0) {
+       product.setProductQuantity(0);
+    }
+    ```
+5. Mengubah "redirect:/product/list" menjadi sebuah private static final constant di ProductController agar tidak melanggar DRY (Don't Repeat Yourself) principle.
+Sebelum:
+    ```
+    public String editProductPost(@ModelAttribute Product product){
+        service.update(product);
+        return "redirect:/product/list";
+    }
+    ```
+Setelah:
+    ```
+    private static final String REDIRECT_PRODUCT_LIST = "redirect:/product/list";
+    .
+    .
+    public String editProductPost(@ModelAttribute Product product){
+        service.update(product);
+        return REDIRECT_PRODUCT_LIST;
+    }
+    ```
 ### Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
 Sudah, karena saya menerapkan Automated Testing dan Code Quality Analysis. Setiap push dan pull request men-trigger test suite dan static code analysis. Hal ini dilakukan agar perubahan baru tidak menyebabkan regresi atau masalah kualitas kode. Ini juga sejalan dengan prinsip CI yang mengutamakan validasi kode sebelum digabungkan. Saya menerapkan CD disaat mendeploy aplikasi ke PaaS setelah semua pengujian berhasil. Ini berarti setiap perubahan yang lolos tahap pengujian akan langsung diterapkan ke _production environment_ tanpa interverensi manual. Dengan demikian, proses pengembangan menjadi lebih efisien dan memastikan bahwa fitur baru atau perbaikan dapat segera digunakan oleh pengguna.
 
