@@ -50,7 +50,7 @@ class ProductControllerTest {
         Product product = new Product();
         mockMvc.perform(post("/product/create").flashAttr("product", product))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("list"));
+                .andExpect(redirectedUrl("/product/list"));
         verify(service).create(product);
     }
 
@@ -79,7 +79,7 @@ class ProductControllerTest {
         Product product = new Product();
         mockMvc.perform(post("/product/edit").flashAttr("product", product))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("list"));
+                .andExpect(redirectedUrl("/product/list"));
         verify(service).update(product);
     }
 
