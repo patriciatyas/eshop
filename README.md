@@ -44,12 +44,13 @@ Patricia Herningtyas - 2306152241
    ```
    untuk mencegah NullPointerException jika getProductName() adalah null (akan me-return false jika null)
 4. Menambahkan {} untuk if conditions agar kode memiliki _readability_ dan _maintainability_ yang lebih baik. 
-Sebelum: 
+
+    Sebelum: 
    ```
    if ("".equals(product.getProductName())) product.setProductName("Nama produk tidak boleh kosong");
     if (product.getProductQuantity() < 0) product.setProductQuantity(0);
    ```
-Setelah:
+    Setelah:
     ```
     if ("".equals(product.getProductName())) {
        product.setProductName("Nama produk tidak boleh kosong");
@@ -59,14 +60,15 @@ Setelah:
     }
     ```
 5. Mengubah "redirect:/product/list" menjadi sebuah private static final constant di ProductController agar tidak melanggar DRY (Don't Repeat Yourself) principle.
-Sebelum:
+
+    Sebelum:
     ```
     public String editProductPost(@ModelAttribute Product product){
         service.update(product);
         return "redirect:/product/list";
     }
     ```
-Setelah:
+    Setelah:
     ```
     private static final String REDIRECT_PRODUCT_LIST = "redirect:/product/list";
     .
