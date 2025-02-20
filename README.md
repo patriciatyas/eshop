@@ -25,7 +25,7 @@ Patricia Herningtyas - 2306152241
    }
    ```
 ### Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
-Sudah, karena saya menerapkan Automated Testing dan Code Quality Analysis. Setiap push dan pull request men-trigger test suite dan static code analysis. Hal ini dilakukan agar perubahan baru tidak menyebabkan regresi atau masalah kualitas kode. Ini juga sejalan dengan prinsip CI yang mengutamakan validasi kode sebelum digabungkan. Saya menerapkan CD disaat mendeploy aplikasi ke PaaS setelah semua pengujian berhasil. Ini berarti setiap perubahan yang lolos tahap pengujian akan langsung diterapkan ke _production environment_ tanpa interverensi manual.
+Sudah, karena saya menerapkan Automated Testing dan Code Quality Analysis. Setiap push dan pull request men-trigger test suite dan static code analysis. Hal ini dilakukan agar perubahan baru tidak menyebabkan regresi atau masalah kualitas kode. Ini juga sejalan dengan prinsip CI yang mengutamakan validasi kode sebelum digabungkan. Saya menerapkan CD disaat mendeploy aplikasi ke PaaS setelah semua pengujian berhasil. Ini berarti setiap perubahan yang lolos tahap pengujian akan langsung diterapkan ke _production environment_ tanpa interverensi manual. Dengan demikian, proses pengembangan menjadi lebih efisien dan memastikan bahwa fitur baru atau perbaikan dapat segera digunakan oleh pengguna.
 
 
 
