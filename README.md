@@ -5,15 +5,15 @@ Patricia Herningtyas - 2306152241
 ### List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.
 1. Saya menghapus modifier yang tidak perlu dalam interface ProductService. Dalam Java, semua metode di dalam sebuah interface secara implisit bersifat public dan abstract, sehingga menambahkan modifier public secara eksplisit menjadi redundan. Dengan menghapusnya, kode menjadi lebih bersih dan mengikuti _best practice_ dalam java, meningkatkan _readability_ dan _code maintenance_.
     Permasalahan:  
-        ``` 
-        public interface ProductService {
-            public Product create(Product product);
-            public List<Product> findAll();
-            public Product findProductById (String productId);
-            public Product update(Product product);
-            public void delete (Product product);
-        }
-        ```
+    ``` 
+    public interface ProductService {
+        public Product create(Product product);
+        public List<Product> findAll();
+        public Product findProductById (String productId);
+        public Product update(Product product);
+        public void delete (Product product);
+    }
+    ```
    Perbaikan:
    ```
     public interface ProductService {
