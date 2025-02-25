@@ -13,7 +13,7 @@ public class CarServiceImpl implements CarService {
     private CarRepository carRepository;
 
     @Override
-    public Car createCar(Car car) {
+    public Car create(Car car) {
         // TODO Auto-generated method stub
         carRepository.create(car);
         return car;
