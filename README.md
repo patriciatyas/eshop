@@ -7,6 +7,28 @@ Patricia Herningtyas - 2306152241
 
 🔗 [Link ADV Shop](https://gothic-fionna-patriciatyas-af6852fc.koyeb.app/) 🔗
 
+# Module 3 - Maintainability & OO Principles
+### SOLID principles yang diterapkan:
+1. Single Responsibility Principle (SRP)
+   - Memisahkan `CarController` dari `ProductController` dan menjadikannya class sendiri
+   - Memisahkan ID _generation_ dari CarRepository dan menjadikannya class sendiri
+   Dengan demikian, setiap class sekarang memiliki tepat satu _responsibility_
+2. Liskov Substitution Principle (LSP)
+   - Menghapus extends dari CarController dan membuat CarController menjadi class sendiri (di file berbeda). Hal ini saya lakukan karena CarController memiliki perilaku yang berbeda dengan superclassnya.
+3. Interface Segregation Principle (ISP)
+   - ISP telah diterapkan pada CarService karena interface ini fokus pada satu hal, yaitu CRUD untuk Car.
+4. Dependency Inversion Principle (DIP)
+   - Mengganti tipe data dari variabel carService pada CarController yang awalnya CarServiceImpl menjadi CarService. Hal ini saya lakukan karena CarController seharusnya bergantung dengan interface CarService.
+
+### Keuntungan dari mengimplementasikan SOLID principle
+Dengan menerapkan prinsip SOLID. Kode dapat lebih mudah di-_maintain_. Contoh: Jika cara pembuatan ID diubah, hanya IdGeneratorService yang perlu dimodifikasi tanpa mengubah repository. Manfaat dari hal ini adalah perubahan lokal mengurangi risiko bug di bagian lain proyek.
+Proyek yang menerapkan prinsip SOLID memiliki fondasi yang kuat, dapat menangani pertumbuhan dan perubahan di masa depan dengan lebih mudah, serta tetap mudah diuji dan dipelihara.
+
+### Kekurangan dari tidak mengimplementasikan SOLID principle
+Tanpa menerapkan prinsip SOLID, kode bisa menjadi sulit diperbaiki, tidak fleksibel, dan mudah mengalami error saat ada perubahan. Jika satu bagian kode diubah, bagian lain yang tidak berhubungan bisa ikut bermasalah karena semuanya terlalu saling bergantung. Selain itu, _testing_ juga menjadi lebih rumit karena sulit memisahkan bagian kode untuk di-_test_ secara mandiri.
+Contoh: Jika SRP tidak diterapkan, anggota tim lain dapat kesulitan menemukan metode-metode dalam CarController karena masih tergabung dalam ProductController, sehingga membingungkan dan memperumit pemahaman kode.
+
+<details>
 # Module 2 - CI/CD & Dev Ops
 
 ### List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.
@@ -87,7 +109,7 @@ Patricia Herningtyas - 2306152241
     ```
 ### Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
 Sudah, karena saya menerapkan Automated Testing dan Code Quality Analysis. Setiap push dan pull request men-trigger test suite dan static code analysis. Hal ini dilakukan agar perubahan baru tidak menyebabkan regresi atau masalah kualitas kode. Ini juga sejalan dengan prinsip CI yang mengutamakan validasi kode sebelum digabungkan. Saya menerapkan CD disaat mendeploy aplikasi ke PaaS setelah semua pengujian berhasil. Ini berarti setiap perubahan yang lolos tahap pengujian akan langsung diterapkan ke _production environment_ tanpa interverensi manual. Dengan demikian, proses pengembangan menjadi lebih efisien dan memastikan bahwa fitur baru atau perbaikan dapat segera digunakan oleh pengguna.
-
+</details>
 
 
 <details>
