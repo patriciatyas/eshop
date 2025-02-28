@@ -29,6 +29,8 @@ Tanpa menerapkan prinsip SOLID, kode bisa menjadi sulit diperbaiki, tidak fleksi
 Contoh: Jika SRP tidak diterapkan, anggota tim lain dapat kesulitan menemukan metode-metode dalam CarController karena masih tergabung dalam ProductController, sehingga membingungkan dan memperumit pemahaman kode.
 
 <details>
+<summary>Module 2 - CI/CD & Dev Ops</summary>
+
 # Module 2 - CI/CD & Dev Ops
 
 ### List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.
