@@ -75,6 +75,7 @@ public class PaymentServiceImpl implements PaymentService {
         String address = paymentData.get("address");
         String deliveryFee = paymentData.get("deliveryFee");
 
+        // Both address and delivery fee must be provided
         if (address == null || address.isEmpty() || deliveryFee == null || deliveryFee.isEmpty()) {
             return "REJECTED";
         }
