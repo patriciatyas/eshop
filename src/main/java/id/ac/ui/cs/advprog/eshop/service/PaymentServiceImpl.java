@@ -72,11 +72,17 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     private String validateCashOnDelivery(Map<String, String> paymentData) {
+        // Extract address and delivery fee
         String address = paymentData.get("address");
         String deliveryFee = paymentData.get("deliveryFee");
 
-        // Both address and delivery fee must be provided
-        if (address == null || address.isEmpty() || deliveryFee == null || deliveryFee.isEmpty()) {
+        // Validate address
+        if (address == null || address.isEmpty()) {
+            return "REJECTED";
+        }
+
+        // Validate delivery fee
+        if (deliveryFee == null || deliveryFee.isEmpty()) {
             return "REJECTED";
         }
 
