@@ -7,7 +7,18 @@ Patricia Herningtyas - 2306152241
 
 🔗 [Link ADV Shop](https://gothic-fionna-patriciatyas-af6852fc.koyeb.app/) 🔗
 
+# Module 4 - Refactoring and TDD
+1. Refleksi terhadap TDD
+   Dari tutorial yang telah saya kerjakan, TDD (Test-Driven Development) sangat berguna meskipun awalnya cukup sulit bagi saya untuk mengimplementasikannya. Saya masih belum terbiasa untuk membuat unit test terlebih dahulu sebelum mengembangkan _class_-nya . Namun, setelah menerapkan TDD, saya mulai memahami manfaatnya dalam memastikan bahwa kode yang saya tulis sudah sesuai dengan ekspektasi dan bebas dari bug sejak awal. Selain itu, TDD membantu saya dalam membuat desain kode yang lebih modular dan mudah diuji, karena saya harus mempertimbangkan bagaimana suatu fungsi atau metode dapat diuji secara independen. Kedepannya, saya ingin lebih terbiasa dengan TDD agar proses pengembangan menjadi lebih efisien dan kualitas kode tetap terjaga.
+2. Refleksi terhadap implementasi F.I.R.S.T. Principle
+   Saya belum sepenuhnya menerapkan prinsip F.I.R.S.T. (Fast, Independent, Repeatable, Self-Validating, and Timely) dalam testing karena beberapa pengujian saya masih bisa ditingkatkan. Misalnya, saya perlu memastikan bahwa setiap unit test benar-benar independen, sehingga tidak bergantung pada urutan eksekusi tertentu. Selain itu, saya juga harus meningkatkan kecepatan eksekusi pengujian dan memastikan bahwa semua test dapat dijalankan berulang kali dengan hasil yang konsisten. Dengan menerapkan F.I.R.S.T. secara lebih disiplin, saya dapat meningkatkan kualitas test, tidak hanya dari segi cakupan kode (code coverage), tetapi juga dari segi efektivitas dalam menangkap bug.
+
+<details>
+
+<summary>Module 3 - Maintainability & OO Principles</summary>
+
 # Module 3 - Maintainability & OO Principles
+
 ### SOLID principles yang diterapkan:
 1. Single Responsibility Principle (SRP)
    - Memisahkan `CarController` dari `ProductController` dan menjadikannya class sendiri
@@ -27,6 +38,8 @@ Proyek yang menerapkan prinsip SOLID memiliki fondasi yang kuat, dapat menangani
 ### Kekurangan dari tidak mengimplementasikan SOLID principle
 Tanpa menerapkan prinsip SOLID, kode bisa menjadi sulit diperbaiki, tidak fleksibel, dan mudah mengalami error saat ada perubahan. Jika satu bagian kode diubah, bagian lain yang tidak berhubungan bisa ikut bermasalah karena semuanya terlalu saling bergantung. Selain itu, _testing_ juga menjadi lebih rumit karena sulit memisahkan bagian kode untuk di-_test_ secara mandiri.
 Contoh: Jika SRP tidak diterapkan, anggota tim lain dapat kesulitan menemukan metode-metode dalam CarController karena masih tergabung dalam ProductController, sehingga membingungkan dan memperumit pemahaman kode.
+</details>
+
 
 <details>
 <summary>Module 2 - CI/CD & Dev Ops</summary>
