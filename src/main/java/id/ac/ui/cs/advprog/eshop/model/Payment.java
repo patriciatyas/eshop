@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Getter
@@ -17,4 +18,13 @@ public class Payment {
     private String status;
     private Map<String, String> paymentData;
     private Order order;
+
+    // Additional constructor for convenience
+    public Payment(String id, String method, String status, Order order) {
+        this.id = id;
+        this.method = method;
+        this.status = status;
+        this.order = order;
+        this.paymentData = new HashMap<>();
+    }
 }
