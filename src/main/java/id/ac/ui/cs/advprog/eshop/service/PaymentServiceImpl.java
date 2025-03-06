@@ -47,22 +47,23 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     private String validateVoucherCode(String voucherCode) {
-        if (voucherCode == null || voucherCode.length() != 16) {
+        // Null check
+        if (voucherCode == null) {
             return "REJECTED";
         }
 
+        // Length validation
+        if (voucherCode.length() != 16) {
+            return "REJECTED";
+        }
+
+        // Prefix validation
         if (!voucherCode.startsWith("ESHOP")) {
             return "REJECTED";
         }
 
         // Count numerical characters
-        int numCount = 0;
-        for (char c : voucherCode.toCharArray()) {
-            if (Character.isDigit(c)) {
-                numCount++;
-            }
-        }
-
+        long numCount = voucherCode.chars().filter(Character::isDigit).count();
         if (numCount != 8) {
             return "REJECTED";
         }
