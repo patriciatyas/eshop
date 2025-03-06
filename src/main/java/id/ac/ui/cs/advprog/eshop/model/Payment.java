@@ -1,17 +1,10 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Payment {
     private String id;
     private String method;
@@ -19,12 +12,23 @@ public class Payment {
     private Map<String, String> paymentData;
     private Order order;
 
-    // Additional constructor for convenience
-    public Payment(String id, String method, String status, Order order) {
+    public Payment(String id, String method, String status, Map<String, String> paymentData) {
         this.id = id;
         this.method = method;
         this.status = status;
+        this.paymentData = paymentData;
+    }
+
+    public Payment(String id, String method, String status, Map<String, String> paymentData, Order order) {
+        this(id, method, status, paymentData);
         this.order = order;
-        this.paymentData = new HashMap<>();
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
