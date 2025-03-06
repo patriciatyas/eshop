@@ -11,13 +11,7 @@ public class PaymentRepository {
     private final List<Payment> paymentData = new ArrayList<>();
 
     public Payment save(Payment payment) {
-        int index = -1;
-        for (int i = 0; i < paymentData.size(); i++) {
-            if (paymentData.get(i).getId().equals(payment.getId())) {
-                index = i;
-                break;
-            }
-        }
+        int index = getIndex(payment.getId());
 
         if (index != -1) {
             paymentData.set(index, payment);
@@ -29,15 +23,22 @@ public class PaymentRepository {
     }
 
     public Payment findById(String id) {
-        for (Payment payment : paymentData) {
-            if (payment.getId().equals(id)) {
-                return payment;
-            }
-        }
-        return null;
+        return paymentData.stream()
+                .filter(payment -> payment.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     public List<Payment> findAll() {
         return new ArrayList<>(paymentData);
+    }
+
+    private int getIndex(String id) {
+        for (int i = 0; i < paymentData.size(); i++) {
+            if (paymentData.get(i).getId().equals(id)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
