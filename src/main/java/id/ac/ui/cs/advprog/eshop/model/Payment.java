@@ -6,10 +6,10 @@ import java.util.Map;
 
 @Getter
 public class Payment {
-    private String id;
-    private String method;
+    private final String id;
+    private final String method;
     private String status;
-    private Map<String, String> paymentData;
+    private final Map<String, String> paymentData;
     private Order order;
 
     public Payment(String id, String method, String status, Map<String, String> paymentData) {
