@@ -17,8 +17,8 @@
         <div class="mb-3">
             <label class="form-label">Select Products</label>
             <div th:each="product : ${products}" class="form-check">
-                <input class="form-check-input" type="checkbox" name="selectedProducts" th:value="${product.id}" th:id="'product-' + ${product.id}">
-                <label class="form-check-label" th:for="'product-' + ${product.id}" th:text="${product.name} + ' - $' + ${product.price}"></label>
+                <input class="form-check-input" type="checkbox" name="selectedProducts" th:value="${product.productId}" th:id="'product-' + ${product.productId}">
+                <label class="form-check-label" th:for="'product-' + ${product.productId}" th:text="${product.productName}"></label>
             </div>
         </div>
 

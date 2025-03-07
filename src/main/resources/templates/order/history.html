@@ -29,7 +29,7 @@
             <td th:text="${#dates.format(new java.util.Date(order.orderTime), 'dd-MM-yyyy HH:mm')}"></td>
             <td>
                 <ul>
-                    <li th:each="product : ${order.products}" th:text="${product.name} + ' - $' + ${product.price}"></li>
+                    <li th:each="product : ${order.products}" th:text="${product.productName}"></li>
                 </ul>
             </td>
             <td th:text="${order.status}"></td>
@@ -40,7 +40,7 @@
         </tbody>
     </table>
 
-    <a href="/" class="btn btn-secondary mt-3">Back to Home</a>
+    <a href="/static" class="btn btn-secondary mt-3">Back to Home</a>
 </div>
 </body>
 </html>
