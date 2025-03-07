@@ -155,4 +155,80 @@ class PaymentServiceImplTest {
         assertEquals(2, allPayments.size());
         verify(paymentRepository).findAll();
     }
+
+    @Test
+    void testAddPaymentWithUnknownMethod() {
+        Map<String, String> unknownPaymentData = new HashMap<>();
+        Payment payment = paymentService.addPayment(order, "UNKNOWN", unknownPaymentData);
+
+        assertNotNull(payment);
+        assertEquals("WAITING", payment.getStatus());
+        verify(paymentRepository).save(any(Payment.class));
+    }
+
+    @Test
+    void testValidateVoucherCodeNull() {
+        assertEquals("REJECTED", paymentService.addPayment(order, "VOUCHER", new HashMap<>()).getStatus());
+    }
+
+    @Test
+    void testValidateVoucherCodeTooShort() {
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("voucherCode", "ESHOP123");
+        assertEquals("REJECTED", paymentService.addPayment(order, "VOUCHER", paymentData).getStatus());
+    }
+
+    @Test
+    void testValidateVoucherCodeTooLong() {
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("voucherCode", "ESHOP123456789012");
+        assertEquals("REJECTED", paymentService.addPayment(order, "VOUCHER", paymentData).getStatus());
+    }
+
+    @Test
+    void testValidateVoucherCodeNotEnoughNumbers() {
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("voucherCode", "ESHOPABCDEFGH1234");
+        assertEquals("REJECTED", paymentService.addPayment(order, "VOUCHER", paymentData).getStatus());
+    }
+
+    @Test
+    void testValidateVoucherCodeTooManyNumbers() {
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("voucherCode", "ESHOP1234567890");
+        assertEquals("REJECTED", paymentService.addPayment(order, "VOUCHER", paymentData).getStatus());
+    }
+
+    @Test
+    void testValidateCashOnDeliveryAddressNull() {
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("deliveryFee", "10000");
+
+        assertEquals("REJECTED", paymentService.addPayment(order, "COD", paymentData).getStatus());
+    }
+
+    @Test
+    void testValidateCashOnDeliveryFeeNull() {
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("address", "Jakarta");
+
+        assertEquals("REJECTED", paymentService.addPayment(order, "COD", paymentData).getStatus());
+    }
+
+    @Test
+    void testValidateCashOnDeliveryBothNull() {
+        Map<String, String> paymentData = new HashMap<>();
+
+        assertEquals("REJECTED", paymentService.addPayment(order, "COD", paymentData).getStatus());
+    }
+
+    @Test
+    void testValidateVoucherCodeWrongPrefix() {
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("voucherCode", "SHOP12345678ABC"); // Does not start with "ESHOP"
+
+        Payment payment = paymentService.addPayment(order, "VOUCHER", paymentData);
+
+        assertEquals("REJECTED", payment.getStatus());
+    }
 }
